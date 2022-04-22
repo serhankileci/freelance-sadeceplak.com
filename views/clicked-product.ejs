@@ -1,0 +1,74 @@
+<% let images = fs.readdirSync(`${server}/${uploads}/${product.id}/images`); %>
+<% let audios = fs.readdirSync(`${server}/${uploads}/${product.id}/audios`); %>
+
+<div class="singleProd">
+    <div class="moreImagesContainer">
+        <% for (const image of images) { %>
+            <div class="moreImages">
+                <img class="specificImg" src="<%= `/uploads/${product.id}/images/${image}` %>">         
+            </div>
+        <% } %>
+    </div>
+    
+    <div id="zoom-img" style="
+        background-image: url('<%= `/uploads/${product.id}/images/${images[0]}` %>');
+        background-position: center;
+        background-size: contain;">
+    </div>
+    <% images = undefined; %>
+
+    <div class="singleProdCol">
+        <div class="specialties">
+            <% if (product.stock == "stokta") { %>
+                <p><b>STOKTA</b></p>
+            <% } else { %>
+                <p><b>STOKTA YOK</b></p>
+            <% } %>
+            <% if (product.price < product.oldprice) { %>
+                <p><b>İNDİRİMLİ</b></p>
+            <% } %>
+            <% if (product.special == "özel ürün") { %>
+                <p><b>ÖZEL ÜRÜN</b></p>
+            <% } %>
+        </div>
+        <h4 class="clickedProdArtist"><b><!-- <a href="/?order=&format=&albumsAndArtists= <%#= product.artist %>">--><%= product.artist /*.toUpperCase() */ %><!--</a>--></b></h4>
+        <h3 class="clickedProdAlbum movingText"><b><!-- <a href="/?order=&format=&albumsAndArtists= <%#= product.album %>">--><%= product.album /*.toUpperCase() */ %><!--</a>--></b></h3>
+        <% if (audios.length == 1) { %>
+            <audio controls>
+                <source src="<%= `/uploads/${product.id}/audios/${audios[0]}` %>">
+            </audio>
+        <% } %>
+        <% audios = undefined; %>
+        <div class="otherInfo">
+            <!-- <p><b>Basım ülkesi:</b> <%#= product.country %> </p>
+            <p><b>Basım yılı:</b> <%#= product.year %> </p>
+            <p><b>Tür:</b>
+                <%# product.genre.slice(0, product.genre.length - 1).forEach((genre) => { %>
+                    <a href="/?genre=<%#= genre %>"><%#= genre %></a><span>, </span>
+                <%# }) %>
+                <a href="/?genre=<%#= product.genre[product.genre.length - 1] %>"><%#= product.genre[product.genre.length - 1] %></a> </p> -->
+            <p class="format"><!--<b>Format:</b> --><!--<a href="/?order=&format=<%= product.format %>&albumsAndArtists=">--><%= product.format %><!--</a>--> </p>
+            <!-- <p><b>RPM:</b> <a href="/?rpm=<%#= product.rpm %>"><%#= product.rpm %></a> </p> -->
+            <!-- <p><b>Kalite:</b> <a href="/?grading=<%#= encodeURIComponent(product.grading) %>"><%#= product.grading %></a></p> -->
+        </div>
+        <!-- <b class="otherInfo">Açıklama:</b> -->
+        <p class="clickedProdDescription">
+            <% if (product.description.trim().length > 0) { %>
+                <%= product.description %>
+            <% } else { %>
+                Bu ürünün açıklaması yok.
+            <% } %>
+        </p>
+        <% if (product.stock === "stokta") { %>
+            <% if (product.price < product.oldprice) { %>
+                <p class="oldprice"><s>₺<%= product.oldprice %></s></p>
+            <% } %>
+            <p class="clickedProdPrice">
+                <b>₺<%= product.price %></b>
+            </p>
+        <% } %>
+    </div>
+</div>
+
+<script src="/js/product-page.js" defer></script>
+<noscript><h1>Tarayıcınız JavaScript"i desteklemiyor! <br> Your browser does not support JavaScript!</h1></noscript>

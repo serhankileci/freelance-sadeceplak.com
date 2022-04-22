@@ -1,0 +1,38 @@
+<a href="/admin" style="display: grid; justify-content: center;">geri dön</a>
+
+<div style="position: relative; padding: 10px;
+margin: 10px; font-family: Verdana; font-size: 16px; line-height: 1.2; display: grid;
+justify-content: center; text-align: center;">
+    <% if (req.session.error) { %>
+        <p><%= req.session.error %></p>
+    <% } %>
+    <h5>varolan resimleri güncelle</h5>
+    <form method="POST" action="/admin/<%= product.id %>/updateImgs" enctype="multipart/form-data">
+
+        <label for="images"></label>
+        <input name="images" type="file" multiple required accept="image/png, image/jpg, image/jpeg"> <br>
+
+        <input type="submit" value="güncelle">
+    </form>
+</div>
+
+<div style="position: relative; padding: 10px;
+margin: 10px; font-family: Verdana; font-size: 16px; line-height: 1.2; display: grid;
+justify-content: center; text-align: center;">
+    <h5>varolan ses kaydını güncelle</h5>
+    <form method="POST" action="/admin/<%= product.id %>/updateAudios" enctype="multipart/form-data">
+
+        <label for="audios"></label>
+        <input name="audios" type="file" required accept="audio/wav audio/mpeg audio/webm audio/m4a audio/x-m4a"> <br>
+
+        <input type="submit" value="güncelle">
+    </form>
+</div>
+
+<div style="position: relative; padding: 10px;
+margin: 10px; font-family: Verdana; font-size: 16px; line-height: 1.2; display: grid;
+justify-content: center; text-align: center;">
+<form method="POST" action="/admin/<%= product.id %>/deleteAudio">
+    <button type="submit">varolan ses kaydını sil</button>
+</form>
+</div>

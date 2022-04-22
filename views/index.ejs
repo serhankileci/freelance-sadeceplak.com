@@ -1,0 +1,150 @@
+<p class="products-header">
+        <span>Ürünler</span>
+</p>
+<hr class="hr-margin">
+<div class="filter">
+    <form action="/" method="GET" id="myForm">
+        <div class="theFilters">
+            <div class="allInputs">
+                <span class="otherInputs">
+                    <% if (req.query.format) { %>
+                        <input type="radio" checked name="format" style="visibility:hidden; display: none;" value="<%= req.query.format %>">
+                    <% } else { %>
+                        <input type="radio" checked name="format" style="visibility:hidden; display: none;" value="">
+                    <% } %>
+                    <div class="allFormats">
+
+                        <div class="oneFormat">
+                            <label>
+                                <a>Tüm formatlar</a>
+                                <input type="radio" onchange="this.form.submit()" name="format" value="">
+                            </label>
+                        </div>
+                        <div class="exceptOne">
+                            <div class="yerliler">
+                                <div>
+                                    <label>
+                                        <a>Yerli 45</a>
+                                        <input type="radio" onchange="this.form.submit()" name="format" value="<%= req.query.format != 'yerli45' ? 'yerli45' : req.query.format %>">
+                                    </label>
+                                </div>
+                                <div>
+                                    <label>
+                                        <a>Yerli LP</a>
+                                        <input type="radio" onchange="this.form.submit()" name="format" value="<%= req.query.format != 'yerlilp' ? 'yerlilp' : req.query.format %>">
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="yabancilar">
+                                <div>
+                                    <label>
+                                        <a>Yabancı 45</a>
+                                        <input type="radio" onchange="this.form.submit()" name="format" value="<%= req.query.format != 'yabancı45' ? 'yabancı45' : req.query.format %>">
+                                    </label>
+                                </div>
+                                <div>
+                                    <label>
+                                        <a>Yabancı LP</a>
+                                        <input type="radio" onchange="this.form.submit()" name="format" value="<%= req.query.format != 'yabancılp' ? 'yabancılp' : req.query.format %>">
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <label for="order">
+                        <select name="order" onchange="this.form.submit()" class="the-select order-bar">
+                            <option value="<%= req.query.order %>">sırala</option>
+                            <option value="">hepsi</option>
+                            <% for (const order of Object.keys(orderList)) { %>
+                                <option value="<%= order %>"><%= order %></option>
+                            <% } %>
+                        </select>
+                    </label>
+                </span>
+                <span class="searchSpan">
+                    <label for="albumsAndArtists">
+                        <div class="search-box">
+                            <button class="btn-search"><img class="search-icon" src="/icons/search-solid.svg"></button>
+                            <input type="text" name="albumsAndArtists" value="<%= req.query.albumsAndArtists %>" class="input-search" placeholder="<%= productsLen %> plak içinde ara...">
+                        </div>
+                    </label>
+                </span>
+            </div>
+        </div>
+    </form>
+</div>
+
+<% if (req.query.albumsAndArtists != null) { %>
+    <p class="errMsg"><%= errMsg %></p>
+<% } %>
+
+<main>
+    <div class="container">
+        <% product.forEach(product => { %>
+            <div class="product"> <!-- <div class="listingWrap">satildi/indirim/etc</div> -->
+                <div class="album-shadow"></div>
+                <img class="hidden-record" src="/images/record.png">
+                <div class="album-covers">
+                    <a href="/product/<%= product.id %>"><img class="album-cover" src="<%= product.coverImg %>"></a>
+                </div>
+                <div class="info">
+                    <p class="details">
+                        <span class="artist"><%= product.artist %></span>
+                        <span class="album"><i><%= product.album %></i></span>
+                        <span class="format"><%= product.format %></span>
+                        <span class="price">
+                            <% if (product.stock === "stokta") { %>
+                                <% if (product.price < product.oldprice) { %>
+                                    <span class="oldprice" style="font-size: 16px; font-weight: 100;"><s>₺<%= product.oldprice %></s></span>
+                                <% } %>₺<%= product.price %>
+                            <% } else { %>
+                                <span class="oldprice" style="font-size: 16px;"><b>SATILDI</b></span>
+                            <% } %>
+                        </span>
+                    </p>
+                </div>
+            </div>
+        <% }) %>
+    </div>
+</main>
+
+<div> <!-- /products/<%#= i %>/?order=<%#= req.query.order %>&genre=<%#= req.query.genre %>&format=<%#= req.query.format %>&rpm=<%#= req.query.rpm %>&grading=<%#= req.query.grading %>&albumsAndArtists=<%#= req.query.albumsAndArtists %>" -->
+    <% if (pageCount > 0) { %>
+        <div style="display: grid; justify-content: center; padding-bottom: 2rem;">
+            <a href="#"><img src="/images/back-to-top.jpg"></a>
+        </div>
+        <ul class="pagination">
+            <% if (currentPage == 1) { %>
+                <li class="disabled"><a href="/products/1/?format=<%= req.query.format %>&order=<%= req.query.order %>&albumsAndArtists=<%= req.query.albumsAndArtists %>">ilk</a></li>
+            <% } else { %>
+                <li><a href="/products/1/?format=<%= req.query.format %>&order=<%= req.query.order %>&albumsAndArtists=<%= req.query.albumsAndArtists %>">ilk</a></li>
+            <% } %>
+
+            <% let i = (Number(currentPage) > 5 ? Number(currentPage) - 4 : 1) %>
+            <% if (i !== 1) { %>
+                <li class="disabled"><a href="/products/<%= i - 1 %>/?format=<%= req.query.format %>&order=<%= req.query.order %>&albumsAndArtists=<%= req.query.albumsAndArtists %>">...</a></li>
+            <% } %>
+
+            <% for (; i <= (Number(currentPage) + 4) && i <= pageCount; i++) { %>
+                <% if (i == currentPage) { %>
+                    <li class="active"><a href="/products/<%= i %>/?format=<%= req.query.format %>&order=<%= req.query.order %>&albumsAndArtists=<%= req.query.albumsAndArtists %>"><%= i %></a></li>
+                <% } else { %>
+                    <li><a href="/products/<%= i %>/?format=<%= req.query.format %>&order=<%= req.query.order %>&albumsAndArtists=<%= req.query.albumsAndArtists %>"><%= i %></a></li>
+                <% } %>
+                <% if (i == Number(currentPage) + 4 && i < pageCount) { %>
+                    <li class="disabled"><a href="/products/<%= i + 1 %>/?format=<%= req.query.format %>&order=<%= req.query.order %>&albumsAndArtists=<%= req.query.albumsAndArtists %>">...</a></li>
+                <% } %>
+            <% } %>
+
+            <% if (currentPage == pageCount) { %>
+                <li class="disabled"><a href="/products/<%= pageCount %>/?format=<%= req.query.format %>&order=<%= req.query.order %>&albumsAndArtists=<%= req.query.albumsAndArtists %>">son</a></li>
+            <% } else { %>
+                <li><a href="/products/<%= pageCount %>/?format=<%= req.query.format %>&order=<%= req.query.order %>&albumsAndArtists=<%= req.query.albumsAndArtists %>">son</a></li>
+            <% } %>
+        </ul>
+    <% } %>
+</div>
+
+<script src="/js/home-page.js" defer></script>
+<noscript><h1>Tarayıcınız JavaScript"i desteklemiyor! <br> Your browser does not support JavaScript!</h1></noscript>

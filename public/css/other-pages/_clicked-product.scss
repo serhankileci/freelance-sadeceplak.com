@@ -1,0 +1,846 @@
+@import "../texts";
+
+/******************** ANIMS. ********************/
+$hover-on: 0.5s ease-in-out;
+$hover-off: 1s ease-in-out;
+
+.darken {
+    filter: brightness(60%);
+    transition: $hover-on;
+}
+
+.brighten {
+    transition: $hover-off;
+}
+
+@keyframes appear {
+    100% {
+        opacity: 100%;
+        transform: translateX(-25%);
+    }
+}
+.imgRefresh {
+    animation-name: changeOpacity;
+}
+@keyframes changeOpacity {
+    0% {
+        opacity: 0%;
+    }
+}
+@keyframes selectedRotation {
+    50% {
+        opacity: 50%;
+    }
+}
+
+@media screen and (min-width: 1367px) {
+
+    .singleProd {
+        display: grid;
+        position: relative;
+        grid-template-columns: repeat(3, auto);
+        column-gap: 2rem;
+        justify-content: center;
+        align-items: center;
+        margin: 3rem;
+    }
+
+
+    .singleProdCol {
+        audio {
+            position: absolute;
+            top: 2rem;
+            right: 1rem;
+            margin: auto;
+            height: 2rem;
+        }
+
+        box-shadow:
+        rgba(0, 0, 0, 0.09) 0px 2px 1px,
+        rgba(0, 0, 0, 0.09) 0px 4px 2px,
+        rgba(0, 0, 0, 0.09) 0px 8px 4px,
+        rgba(0, 0, 0, 0.09) 0px 16px 8px,
+        rgba(0, 0, 0, 0.09) 0px 32px 16px;
+
+        position: relative;
+
+        padding: 1rem;
+        width: 28rem;
+        height: 35rem;
+        opacity: 0%;
+        animation: appear 1.5s;
+        animation-fill-mode: forwards;
+        left: 25%;
+
+        .specialties {
+            position: absolute;
+            p {
+                margin: 0 auto;
+            }
+        }
+
+        .clickedProdAlbum {
+            position: relative;
+            padding: 0rem 0.5rem;
+            top: 15%;
+
+            white-space: normal;
+            overflow: auto;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            -webkit-box-pack: end;
+        
+            text-align: center;
+            font-size: 1rem;
+            font-weight: 600;
+        }
+        
+        .clickedProdArtist {
+            position: relative;
+            padding: 0rem 0.5rem;
+            top: 15%;
+
+            white-space: normal;
+            overflow: auto;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            -webkit-box-pack: end;
+        
+            text-align: center;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .otherInfo {
+            text-align: center;
+            position: relative;
+            font-size: 1rem;
+            top: 18%;
+        }
+        .clickedProdDescription {
+            position: relative;
+            display: block;
+            top: 24%;
+            padding: 0rem 1rem;
+            height: 12rem;
+            overflow: auto;
+            white-space: pre-line;
+            margin-top: -2rem;
+            word-wrap: break-word;
+
+            text-overflow: clip;
+            
+            font-size: 0.9375rem;
+        }
+        
+        .clickedProdPrice {
+            font-size: 2rem;
+            position: relative;
+            top: 28%;
+            text-align: center;
+            font-weight: bold;
+        }
+        .oldprice {
+            text-align: center;
+            margin: 0 auto;
+            position: relative;
+            top: 28%;
+        }
+    }
+
+    .singleProdImage {
+        position: relative;
+        transition: 1.5s ease-in-out;
+        width: 500px;
+        opacity: 0%;
+        animation: imgAppear 1.5s;
+        animation-fill-mode: forwards;
+        border: solid black 1px;
+    }
+
+    #zoom-img {
+        box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+        animation-duration: 1s;
+        animation-fill-mode: forwards;
+        animation-timing-function: ease-in-out;
+        width: 40rem;
+        height: 40rem;
+    }
+
+    .singleProdImage:hover {
+        box-shadow: rgb(146, 146, 146) 1.2rem 1.2rem 0rem 0rem; /* change box shadow color based on the album's dominant color? */
+        transition: 1.5s ease;
+        transform: translateX(-8.4px) scale(1.1);
+    }
+
+    .activeThumbnail {
+        position: relative;
+        z-index: 8;
+        animation: selectedRotation 0.5s infinite forwards;
+    }
+
+    .moreImagesContainer {
+        display: grid;
+        position: relative;
+        width: fit-content;
+        row-gap: 0.2%;
+        height: 30rem;
+        overflow: auto;
+        animation: imgAppear 1.5s;
+        animation-fill-mode: forwards;
+        
+        .moreImages {
+            .specificImg {
+                position: relative;
+                transition: 0.5s ease-in-out;
+
+                width: 100px;
+                cursor: pointer;
+                
+                border: solid black 0.01rem;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 1366px) and (min-width: 1027px) {
+    .singleProd {
+        display: grid;
+        position: relative;
+        grid-template-columns: repeat(3, auto);
+        column-gap: 2rem;
+        justify-content: center;
+        align-items: center;
+        margin: 2rem;
+    }
+
+    .singleProdCol {
+        audio {
+            position: absolute;
+            top: 2.8rem;
+            left: 0;
+            right: 0;
+            margin: auto;
+            width: 15rem;
+            height: 1.2rem;
+        }
+
+        box-shadow:
+        rgba(0, 0, 0, 0.09) 0px 2px 1px,
+        rgba(0, 0, 0, 0.09) 0px 4px 2px,
+        rgba(0, 0, 0, 0.09) 0px 8px 4px,
+        rgba(0, 0, 0, 0.09) 0px 16px 8px,
+        rgba(0, 0, 0, 0.09) 0px 32px 16px;
+
+        position: relative;
+
+        padding: 1rem;
+        width: 20rem;
+        height: 25rem;
+        opacity: 0%;
+        animation: appear 1.5s;
+        animation-fill-mode: forwards;
+        left: 25%;
+
+        .specialties {
+            display: grid;
+            position: absolute;
+            grid-template-columns: repeat(3, auto);
+            column-gap: 1rem;
+            justify-content: left;
+            p {
+                margin: 0 auto;
+            }
+        }
+
+        .clickedProdAlbum {
+            position: relative;
+            padding: 0rem 0.2rem;
+            white-space: normal;
+            overflow: auto;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            -webkit-box-pack: end;
+            top: 14%;
+            text-align: center;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        
+        .clickedProdArtist {
+            position: relative;
+            padding: 0rem 0.2rem;
+            
+            white-space: normal;
+            overflow: auto;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            -webkit-box-pack: end;
+            top: 14%;
+        
+            text-align: center;
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        .otherInfo {
+            text-align: center;
+            position: relative;
+            font-size: 0.9rem;
+            top: 14%;
+        }
+        .clickedProdDescription {
+            position: relative;
+            padding: 1rem;
+            height: 9rem;
+
+            overflow: auto;
+            white-space: pre-line;
+            margin-top: -2rem;
+            word-wrap: break-word;
+
+            text-overflow: clip;
+            
+            top: 18%;
+            font-size: 0.9rem;
+        }
+        
+        .clickedProdPrice {
+            font-size: 2rem;
+            position: relative;
+            text-align: center;
+            font-weight: bold;
+            top: 13%;
+        }
+        .oldprice {
+            top: 16%;
+            text-align: center;
+            margin: 0 auto;
+            position: relative;
+        }
+    }
+    .singleProdImage {
+        position: relative;
+        transition: 1.5s ease-in-out;
+        width: 500px;
+        opacity: 0%;
+        animation: imgAppear 1.5s;
+        animation-fill-mode: forwards;
+        border: solid black 1px;
+    }
+    #zoom-img {
+        box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+        animation-duration: 1s;
+        animation-fill-mode: forwards;
+        animation-timing-function: ease-in-out;
+
+        width: 30rem;
+        height: 30rem;
+    }
+    .singleProdImage:hover {
+        box-shadow: rgb(146, 146, 146) 1.2rem 1.2rem 0rem 0rem;
+        transition: 1.5s ease;
+        transform: translateX(-8.4px) scale(1.1);
+    }
+
+    .activeThumbnail {
+        position: relative;
+        z-index: 8;
+        animation: selectedRotation 0.5s infinite forwards;
+    }
+    .moreImagesContainer {
+        display: grid;
+        width: fit-content;
+        grid-template-rows: repeat(10, auto);
+        row-gap: 0.2%;
+        height: 22rem;
+        overflow: auto;
+        animation: imgAppear 1.5s;
+        animation-fill-mode: forwards;
+        
+        .moreImages {
+            .specificImg {
+                position: relative;
+                transition: 0.5s ease-in-out;
+
+                width: 5rem;
+                cursor: pointer;
+                
+                border: solid black 0.01rem;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 1026px) and (min-width: 801px) {
+    .singleProd {
+        display: grid;
+        position: relative;
+        grid-template-rows: repeat(3, auto);
+        row-gap: 1rem;
+        justify-content: center;
+        justify-items: center;
+        margin: 2rem;        
+    }
+
+    .singleProdCol {
+        audio {
+            position: absolute;
+            top: 0.5rem;
+            right: 1rem;
+            margin: auto;
+            height: 2rem;
+        }
+    
+        box-shadow:
+        rgba(0, 0, 0, 0.09) 0px 2px 1px,
+        rgba(0, 0, 0, 0.09) 0px 4px 2px,
+        rgba(0, 0, 0, 0.09) 0px 8px 4px,
+        rgba(0, 0, 0, 0.09) 0px 16px 8px,
+        rgba(0, 0, 0, 0.09) 0px 32px 16px;
+    
+        position: relative;
+    
+        padding: 1rem;
+        width: 38rem;
+        height: 30rem;
+        opacity: 0%;
+        animation: appear 1.5s;
+        animation-fill-mode: forwards;
+        left: 25%;
+    
+        .specialties {
+            position: absolute;
+            p {
+                margin: 0 auto;
+                font-size: 1rem;
+            }
+        }
+    
+        .clickedProdAlbum {
+            position: relative;
+            padding: 0rem 1rem;
+            white-space: normal;
+            overflow: auto;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            -webkit-box-pack: end;
+            text-align: center;
+            font-size: 1rem;
+            font-weight: 600;
+            top: 20%;
+        }
+        
+        .clickedProdArtist {
+            position: relative;
+            padding: 0rem 1rem;
+            white-space: normal;
+            overflow: auto;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            -webkit-box-pack: end;    
+            text-align: center;
+            font-size: 1.2rem;
+            font-weight: 600;
+            top: 20%;
+        }
+    
+        .otherInfo {
+            text-align: center;
+            position: relative;
+            font-size: 0.9rem;
+            top: 20%;
+        }
+
+        
+        .clickedProdDescription {
+            position: relative;
+            padding: 0.2rem;
+
+            overflow: auto;
+            white-space: pre-line;
+            margin-top: -2rem;
+            word-wrap: break-word;
+            
+            text-overflow: clip;
+            
+            height: 10rem;
+            font-size: 1rem;
+            top: 25%;
+        }
+        
+        .clickedProdPrice {
+            font-size: 2.6rem;
+            position: relative;
+            text-align: center;
+            top: 22%;
+            font-weight: bold;
+        }
+        .oldprice {
+            text-align: center;
+            top: 24%;
+            margin: 0 auto;
+            position: relative;
+        }
+    }
+    
+    #zoom-img {
+        box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+        animation-duration: 1s;
+        animation-fill-mode: forwards;
+        animation-timing-function: ease-in-out;
+        width: 38rem;
+        height: 38rem;
+    }
+    
+    .activeThumbnail {
+        position: relative;
+        z-index: 8;
+        animation: selectedRotation 0.5s infinite forwards;
+    }
+    
+    .moreImagesContainer {
+        display: grid;
+        position: relative;
+        width: 30rem;
+        grid-template-columns: repeat(10, auto);
+        column-gap: 0.1rem;
+        overflow: auto;
+        animation: imgAppear 1.5s;
+        animation-fill-mode: forwards;
+        
+        .moreImages {
+            .specificImg {
+                position: relative;
+                transition: 0.5s ease-in-out;
+    
+                width: 6rem;
+                cursor: pointer;
+                
+                border: solid black 0.01rem;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 800px) and (min-width: 501px) {
+    .singleProd {
+        display: grid;
+        position: relative;
+        grid-template-rows: repeat(3, auto);
+        row-gap: 1rem;
+        justify-content: center;
+        justify-items: center;
+        margin: 1rem;        
+    }
+
+    .singleProdCol {
+        audio {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            margin: auto;
+            width: 12rem;
+            height: 1.5rem;
+        }
+    
+        box-shadow:
+        rgba(0, 0, 0, 0.09) 0px 2px 1px,
+        rgba(0, 0, 0, 0.09) 0px 4px 2px,
+        rgba(0, 0, 0, 0.09) 0px 8px 4px,
+        rgba(0, 0, 0, 0.09) 0px 16px 8px,
+        rgba(0, 0, 0, 0.09) 0px 32px 16px;
+    
+        position: relative;
+    
+        padding: 1rem;
+        width: 26rem;
+        height: 24rem;
+        opacity: 0%;
+        animation: appear 1.5s;
+        animation-fill-mode: forwards;
+        left: 25%;
+    
+        .specialties {
+            display: grid;
+            position: relative;
+            grid-template-columns: repeat(3, auto);
+            column-gap: 1rem;
+            justify-content: left;
+            p {
+                margin: 0 auto;
+                font-size: 1rem;
+            }
+        }
+    
+        .clickedProdAlbum {
+            position: relative;
+            padding: 0rem 1rem;
+            top: 5%;
+            white-space: normal;
+            overflow: auto;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            -webkit-box-pack: end;
+        
+            text-align: center;
+            font-size: 1rem;
+            font-weight: 600;
+        }
+        
+        .clickedProdArtist {
+            position: relative;
+            padding: 0rem 1rem;
+            top: 6%;
+            white-space: normal;
+            overflow: auto;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            -webkit-box-pack: end;
+        
+            text-align: center;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+    
+        .otherInfo {
+            top: 4%;
+            text-align: center;
+            position: relative;
+            font-size: 0.9rem;
+        }
+
+        
+        .clickedProdDescription {
+            position: relative;
+            padding: 0.2rem;
+            overflow: auto;
+            white-space: pre-line;
+            margin-top: -2rem;
+            word-wrap: break-word;
+            
+            text-overflow: clip;
+            
+            height: 8rem;
+            top: 8%;
+        
+            font-size: 0.9rem;
+        }
+        
+        .clickedProdPrice {
+            font-size: 2rem;
+            top: 5%;
+            position: relative;
+            text-align: center;
+            font-weight: bold;
+        }
+        .oldprice {
+            top: 6%;
+            text-align: center;
+            margin: 0 auto;
+            position: relative;
+        }
+    }
+    
+    #zoom-img {
+        box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+        animation-duration: 1s;
+        animation-fill-mode: forwards;
+        animation-timing-function: ease-in-out;
+        width: 26rem;
+        height: 26rem;
+    }
+    
+    .activeThumbnail {
+        position: relative;
+        z-index: 8;
+        animation: selectedRotation 0.5s infinite forwards;
+    }
+    
+    .moreImagesContainer {
+        display: grid;
+        position: relative;
+        width: 20rem;
+        grid-template-columns: repeat(10, auto);
+        column-gap: 0.1rem;
+        overflow: auto;
+        animation: imgAppear 1.5s;
+        animation-fill-mode: forwards;
+        
+        .moreImages {
+            .specificImg {
+                position: relative;
+                transition: 0.5s ease-in-out;
+    
+                width: 6rem;
+                cursor: pointer;
+                
+                border: solid black 0.01rem;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 500px) and (min-width: 250px) {
+    
+    .singleProd {
+        display: grid;
+        position: relative;
+        grid-template-rows: repeat(3, auto);
+        row-gap: 0.8rem;
+        justify-content: center;
+        justify-items: center;
+        margin: 1rem;        
+    }
+
+    .singleProdCol {
+        audio {
+            display: none;
+        }
+    
+        box-shadow:
+        rgba(0, 0, 0, 0.09) 0px 2px 1px,
+        rgba(0, 0, 0, 0.09) 0px 4px 2px,
+        rgba(0, 0, 0, 0.09) 0px 8px 4px,
+        rgba(0, 0, 0, 0.09) 0px 16px 8px,
+        rgba(0, 0, 0, 0.09) 0px 32px 16px;
+    
+        position: relative;
+    
+        padding: 1rem;
+        width: 16rem;
+        height: 16.5rem;
+        opacity: 0%;
+        animation: appear 1.5s;
+        animation-fill-mode: forwards;
+        left: 25%;
+    
+        .specialties {
+            display: grid;
+            position: relative;
+            grid-template-columns: repeat(3, auto);
+            column-gap: 1rem;
+            justify-content: left;
+            p {
+                margin: 0 auto;
+                font-size: 0.7rem;
+            }
+        }
+    
+        .clickedProdAlbum {
+            position: relative;
+            padding: 0rem 1rem;
+            top: 5%;
+            white-space: normal;
+            overflow: auto;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            -webkit-box-pack: end;
+        
+            text-align: center;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+        
+        .clickedProdArtist {
+            position: relative;
+            padding: 0rem 1rem;
+            top: 6%;
+            white-space: normal;
+            overflow: auto;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            -webkit-box-pack: end;
+        
+            text-align: center;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+    
+        .otherInfo {
+            top: 4%;
+            text-align: center;
+            position: relative;
+            font-size: 0.8rem;
+        }
+
+        
+        .clickedProdDescription {
+            position: relative;
+            padding: 0.2rem;
+            overflow: auto;
+            white-space: normal;
+            margin-top: -2rem;
+            word-wrap: break-word;
+            
+            text-overflow: clip;
+            top: 12%;
+            height: 4rem;
+        
+            font-size: 0.8rem;
+        }
+        
+        .clickedProdPrice {
+            top: 7%;
+            font-size: 1.5rem;
+            position: relative;
+            text-align: center;
+            font-weight: bold;
+        }
+        .oldprice {
+            top: 9%;
+            text-align: center;
+            margin: 0 auto;
+            position: relative;
+        }
+    }
+    
+    #zoom-img {
+        box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+        animation-duration: 1s;
+        animation-fill-mode: forwards;
+        animation-timing-function: ease-in-out;
+        width: 16rem;
+        height: 16rem;
+    }
+    
+    .activeThumbnail {
+        position: relative;
+        z-index: 8;
+        animation: selectedRotation 0.5s infinite forwards;
+    }
+    
+    .moreImagesContainer {
+        display: grid;
+        position: relative;
+        width: 16rem;
+        grid-template-columns: repeat(10, auto);
+        column-gap: 0.1rem;
+        height: fit-content;
+        overflow: auto;
+        animation: imgAppear 1.5s;
+        animation-fill-mode: forwards;
+        
+        .moreImages {
+            .specificImg {
+                position: relative;
+                transition: 0.5s ease-in-out;
+    
+                width: 4rem;
+                cursor: pointer;
+                
+                border: solid black 0.01rem;
+            }
+        }
+    }
+}

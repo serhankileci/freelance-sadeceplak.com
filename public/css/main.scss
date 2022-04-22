@@ -1,0 +1,20 @@
+/******************** OTHER PAGES ********************/
+@import "./other-pages/admin-panel";
+@import "./other-pages/clicked-product";
+
+/******************** ETC. ********************/
+@import "variables";
+@import "texts";
+@import "misc";
+
+/******************** MEDIA QUERIES ********************/
+/* PC */
+@import "./media-queries/1-largePC";
+@import "./media-queries/2-mediumPC";
+@import "./media-queries/3-smallPC";
+
+/* TABLET */
+@import "./media-queries/4-tablet";
+
+/* MOBILE */
+@import "./media-queries/5-mobile";

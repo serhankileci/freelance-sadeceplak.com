@@ -1,0 +1,28 @@
+html {
+    scroll-behavior: smooth;
+}
+
+* {
+    box-sizing: border-box;
+    color: $font-color;
+    font-family: Roboto;
+}
+
+.errMsg {
+    text-align: center;
+}
+
+a {
+    &:link {
+        color: $font-color;
+        text-decoration: none;
+    }
+    &:visited {
+        color: $font-color;
+    }
+    &:hover {
+        color: rgb(27, 27, 27) !important;
+        transition: 0.5s ease;
+        text-decoration: underline;
+    }
+}

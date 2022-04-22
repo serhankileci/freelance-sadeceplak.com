@@ -1,0 +1,81 @@
+<div style="position: relative; padding: 10px;
+margin: 10px; font-family: Verdana; font-size: 16px; line-height: 1.2; display: grid;
+justify-content: center; text-align: center;">
+    <% if (req.session.error) { %>
+        <p><%= req.session.error %></p>
+    <% } %>
+    <h3>albümü güncelle</h3>
+    <form method="POST" action="/admin/<%= product.id %>?_method=PUT">
+
+        <a href="/admin">geri dön</a> <br><br>
+        
+        <label>sanatçı/grup</label>
+        <input type="text" name="artist" value="<%= product.artist %>" required> <br> <hr>
+        
+        <label>albüm/single</label>
+        <input type="text" name="album" value="<%= product.album %>" required> <br> <hr>
+
+        <p>Kayıtlı format: <%= product.format %></p>
+        <label for="format">Yeni format:</label>
+        <select name="format" style="text-align: center;" required>
+            <option value="<%= product.format %>">seç</option>
+            <option value="Yerli 45">Yerli 45</option>
+            <option value="Yerli LP">Yerli LP</option>
+            <option value="Yabancı 45">Yabancı 45</option>
+            <option value="Yabancı LP">Yabancı LP</option>
+        </select> <br>
+
+        <label>Yeni açıklama:</label>
+        <textarea name="description" rows="8" cols="50" placeholder="" style="resize: none;"><%= product.description %></textarea> <br>
+        
+        Şuanki fiyat: <%= product.price %>
+        <label>Yeni fiyat:</label>
+        <input type="number" min="1" name="price" value="<%= product.price %>"> <br> <hr>
+        <h5>STOK</h5>
+        <% if (product.stock == "stokta") { %>
+            <label for="stokta">stokta</label>
+            <input type="radio" name="stock" value="stokta" checked>
+            <br>
+            <label for="tükendi">tükendi</label>
+            <input type="radio" name="stock" value="tükendi">
+        <% } else { %>
+            <label for="stokta">stokta</label>
+            <input type="radio" name="stock" value="stokta">
+            <br>
+            <label for="tükendi">tükendi</label>
+            <input type="radio" name="stock" value="tükendi" checked>
+        <% } %>
+        <!-- <h5>İNDİRİM</h5>
+        <%# if (product.discount == "indirimli") { %>
+            <label for="indirimsiz">indirimsiz</label>
+            <input type="radio" name="discount" value="indirimsiz">
+            <br>
+            <label for="indirimli">indirimli</label>
+            <input type="radio" name="discount" value="indirimli" checked>
+        <%# } else { %>
+            <label for="indirimsiz">indirimsiz</label>
+            <input type="radio" name="discount" value="indirimsiz" checked>
+            <br>
+            <label for="indirimli">indirimli</label>
+            <input type="radio" name="discount" value="indirimli">
+        <%# } %> -->
+        <br><br>
+        <h5>ÖZEL ÜRÜN</h5>
+        <% if (product.special == "özel ürün") { %>
+            <label for="standart ürün">standart ürün</label>
+            <input type="radio" name="special" value="standart">
+            <br>
+            <label for="özel ürün">özel ürün</label>
+            <input type="radio" name="special" value="özel ürün" checked>
+        <% } else { %>
+            <label for="standart ürün">standart ürün</label>
+            <input type="radio" name="special" value="standart" checked>
+            <br>
+            <label for="özel ürün">özel ürün</label>
+            <input type="radio" name="special" value="özel ürün">
+        <% } %>
+        <br><br>
+
+        <input type="submit" value="güncelle">
+    </form>
+</div>

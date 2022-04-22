@@ -1,0 +1,10 @@
+# prod
+*.env
+public/uploads
+
+# dev
+*.code-workspace
+backup/archive.gz
+
+# misc.
+node_modules

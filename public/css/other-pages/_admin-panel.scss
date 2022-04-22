@@ -1,0 +1,55 @@
+@import "../variables";
+
+.logout {
+    text-align: center;
+}
+
+.adminPageContainer {
+    display: grid;
+    grid-template-rows: repeat(3, auto);
+    justify-content: center;
+    color: $font-color;
+    .submitBtn {
+        position: relative;
+        top: 10px;
+        display: grid;
+        justify-content: center;
+    }
+    #newProduct {
+        text-align: center;
+    }
+
+    .updateAndDeleteBar {
+        padding: 0.5rem;
+    }
+
+    .editContainer {
+        position: relative;
+        margin: 0 auto;
+        padding-left: 4rem;
+        padding-right: 4rem;
+        text-align: center;
+    }
+    
+    .submitContainer {
+        position: relative;
+        display: grid;
+        justify-content: center;
+        justify-self: center;
+        width: fit-content;
+        height: fit-content;
+        margin: 2rem;
+        label {
+            display: inline-block;
+            width: 150px;
+            text-align: right;
+        }
+    }
+}
+
+#removeProduct > button {
+    border: none;
+    background-color: transparent;
+    outline: none;
+    cursor: pointer;
+}
